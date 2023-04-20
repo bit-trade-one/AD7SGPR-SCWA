@@ -15,10 +15,6 @@ class LineBreakTransformer {
   }
 }
 
-const sendButton = document.getElementById('send-button');
-const inputText = document.getElementById('input-text');
-const outputText = document.getElementById('output-text');
-const quickClrButton = document.getElementById('quick-clr');
 let port;
 
 async function onStartButtonClick() {
@@ -40,7 +36,7 @@ async function onStartButtonClick() {
             console.log("Canceled");
             break;
           }
-          outputText.value += value + '\n';
+          document.getElementById("output-text").value += value + '\n';
         }
       } catch (error) {
         console.log("Error: Read");
@@ -55,19 +51,6 @@ async function onStartButtonClick() {
   }
 }
 
-sendButton.addEventListener("click", function () {
-  if (!port) {
-    alert('シリアルポートが接続されていません');
-    return;
-  }
-  const dataToSend = inputText.value + '\n';
-  writeText(dataToSend);
-}, false);
-
-quickClrButton.addEventListener("click", function () {
-  inputText.value = '?CLR';
-}, false);
-
 async function writeText(text) {
   const encoder = new TextEncoder();
   const writer = port.writable.getWriter();
@@ -75,3 +58,35 @@ async function writeText(text) {
   console.log("テキスト書き込み: " + text);
   writer.releaseLock();
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const sendButton = document.getElementById("send-button");
+  const inputText = document.getElementById("input-text");
+  const quickClrButton = document.getElementById("quick-clr");
+
+  sendButton.addEventListener("click", () => {
+    if (!port) {
+      alert("シリアルポートが接続されていません");
+      return;
+    }
+    writeText(inputText.value + "\n");
+    inputText.value = ""; // テキストボックスの中を消す
+  });
+
+  // エンターキーで送信
+  inputText.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (!port) {
+        alert("シリアルポートが接続されていません");
+        return;
+      }
+      writeText(inputText.value + "\n");
+      inputText.value = ""; // テキストボックスの中を消す
+    }
+  });
+
+  quickClrButton.addEventListener("click", function () {
+    inputText.value = "?CLR";
+  });
+});
