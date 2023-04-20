@@ -1,4 +1,4 @@
-# AD7SGPR-serial communication web app
+# AD7SGPR-Serial Communication Web App
 
 
 
