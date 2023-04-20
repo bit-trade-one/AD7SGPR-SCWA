@@ -1,11 +1,20 @@
 class LineBreakTransformer {
-  constructor() {
+  constructor(lineBreakType) {
     this.chunks = "";
+    this.lineBreakType = lineBreakType;
   }
 
   transform(chunk, controller) {
     this.chunks += chunk;
-    const lines = this.chunks.split("\r\n");
+    let lineBreak;
+    if (this.lineBreakType === "CRLF") {
+      lineBreak = "\r\n";
+    } else if (this.lineBreakType === "LF") {
+      lineBreak = "\n";
+    } else if (this.lineBreakType === "CR") {
+      lineBreak = "\r";
+    }
+    const lines = this.chunks.split(lineBreak);
     this.chunks = lines.pop();
     lines.forEach((line) => controller.enqueue(line));
   }
@@ -18,6 +27,9 @@ class LineBreakTransformer {
 let port;
 
 async function onStartButtonClick() {
+  const lineBreakSelect = document.getElementById("linebreak-select");
+  const selectedLineBreak = lineBreakSelect.value;
+
   try {
     port = await navigator.serial.requestPort();
     await port.open({ baudRate: 9600 });
@@ -25,8 +37,9 @@ async function onStartButtonClick() {
     while (port.readable) {
       const textDecoder = new TextDecoderStream();
       const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+      // ここで、selectedLineBreakをLineBreakTransformerに渡す
       const reader = textDecoder.readable
-        .pipeThrough(new TransformStream(new LineBreakTransformer()))
+        .pipeThrough(new TransformStream(new LineBreakTransformer(selectedLineBreak)))
         .getReader();
 
       try {

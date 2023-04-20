@@ -22,6 +22,14 @@
         <input type="text" id="input-text" placeholder="データを入力してください">
         <button id="send-button" class="button">送信</button>
       </div>
+      <div>
+        <label for="linebreak-select">改行コード:</label>
+        <select id="linebreak-select">
+          <option value="CRLF" selected>CRLF</option>
+          <option value="LF">LF</option>
+          <option value="CR">CR</option>
+        </select>
+      </div>
       <button id="quick-clr" class="button">?CLR</button>
       <h2>受信データ:</h2>
       <textarea id="output-text" readonly></textarea>
