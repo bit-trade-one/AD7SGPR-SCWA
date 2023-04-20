@@ -2,6 +2,6 @@
 
 
 
-## [WEBアプリへ](https://github.com/bit-trade-one/-ADXXXXX-Template/raw/master/Manual)
+## [WEBアプリへ](https://bit-trade-one.github.io/AD7SGPR-SCWA/)
 
 ### [親リポジトリ](http://bit-trade-one.co.jp/) 
