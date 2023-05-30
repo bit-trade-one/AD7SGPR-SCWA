@@ -29,10 +29,12 @@ let port;
 async function onStartButtonClick() {
   const lineBreakSelect = document.getElementById("linebreak-select");
   const selectedLineBreak = lineBreakSelect.value;
+  const baudRateSelect = document.getElementById("baudrate-select");
+  const selectedBaudRate = parseInt(baudRateSelect.value, 10);
 
   try {
     port = await navigator.serial.requestPort();
-    await port.open({ baudRate: 9600 });
+    await port.open({ baudRate: selectedBaudRate });
 
     while (port.readable) {
       const textDecoder = new TextDecoderStream();
