@@ -35,12 +35,6 @@
           <option value="1000000">1000000</option>
         </select>
       </div>
-      <button onclick="onStartButtonClick()" class="button">接続</button>
-      <div>
-        <label for="input-text">送信データ:</label>
-        <input type="text" id="input-text" placeholder="データを入力してください">
-        <button id="send-button" class="button">送信</button>
-      </div>
       <div>
         <label for="linebreak-select">改行コード:</label>
         <select id="linebreak-select">
@@ -48,6 +42,12 @@
           <option value="LF">LF</option>
           <option value="CR">CR</option>
         </select>
+      </div>
+      <button onclick="onStartButtonClick()" class="button">接続</button>
+      <div>
+        <label for="input-text">送信データ:</label>
+        <input type="text" id="input-text" placeholder="データを入力してください">
+        <button id="send-button" class="button">送信</button>
       </div>
       <button id="quick-clr" class="button">?CLR</button>
       <h2>受信データ:</h2>
