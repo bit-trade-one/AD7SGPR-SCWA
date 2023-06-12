@@ -102,6 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   quickClrButton.addEventListener("click", function () {
-    inputText.value = "?CLR";
+    inputText.value = "@CLR";
   });
 });
