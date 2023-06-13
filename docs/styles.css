@@ -88,15 +88,36 @@ label {
   table {
     border-collapse: collapse;
     width: 100%;
+    font-family: 'Roboto', sans-serif;
+    color: #444;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   }
   
   th, td {
-    border: 1px solid black;
+    border: 1px solid #f44336;
     padding: 8px;
     text-align: left;
   }
   
   th {
-    background-color: #f2f2f2;
+    background-color: #f44336;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-bottom: 2px solid #b32d29;
+    color: white;
+  }
+
+  td {
+    border-bottom: 1px solid #f44336;
+  }
+
+  tr:nth-child(even) {
+    background-color: #ffe6e6;
+  }
+
+  tr:hover {
+    background-color: #ffcccc;
+    cursor: pointer;
   }
 </style>
+
