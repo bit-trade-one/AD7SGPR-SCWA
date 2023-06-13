@@ -1,59 +1,109 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AD7SGPR シリアル通信アプリ</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
 
-  <body>
-    <header>
-      <h1>AD7SGPR シリアル通信アプリ</h1>
-      <nav>
-        <a href="https://bit-trade-one.co.jp/">BTO HP</a>
-        <a href="https://github.com/bit-trade-one/AD7SGPR-SCWA">GitHub</a>
-      </nav>
-    </header>
-    <main>
-      <div>
-        <label for="baudrate-select">通信速度:</label>
-        <select id="baudrate-select">
-          <option value="300">300</option>
-          <option value="1200">1200</option>
-          <option value="2400">2400</option>
-          <option value="4800">4800</option>
-          <option value="9600">9600</option>
-          <option value="19200">19200</option>
-          <option value="38400">38400</option>
-          <option value="57600">57600</option>
-          <option value="74880">74880</option>
-          <option value="115200" selected>115200</option>
-          <option value="230400">230400</option>
-          <option value="250000">250000</option>
-          <option value="500000">500000</option>
-          <option value="1000000">1000000</option>
-        </select>
-      </div>
-      <div>
-        <label for="linebreak-select">改行コード:</label>
-        <select id="linebreak-select">
-          <option value="CRLF" selected>CRLF</option>
-          <option value="LF">LF</option>
-          <option value="CR">CR</option>
-        </select>
-      </div>
-      <button onclick="onStartButtonClick()" class="button">接続</button>
-      <div>
-        <label for="input-text">送信データ:</label>
-        <input type="text" id="input-text" placeholder="データを入力してください">
-        <button id="send-button" class="button">送信</button>
-      </div>
-      <button id="quick-clr" class="button">@CLR</button>
-      <h2>受信データ:</h2>
-      <textarea id="output-text" readonly></textarea>
-    </main>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AD7SGPR シリアル通信アプリ</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 
-    <script src="app.js"></script>
-  </body>
+<body>
+  <header>
+    <h1>AD7SGPR シリアル通信アプリ</h1>
+    <nav>
+      <a href="https://bit-trade-one.co.jp/">BTO HP</a>
+      <a href="https://github.com/bit-trade-one/AD7SGPR-SCWA">GitHub</a>
+    </nav>
+  </header>
+  <main>
+    <div>
+      <label for="baudrate-select">通信速度:</label>
+      <select id="baudrate-select">
+        <option value="300">300</option>
+        <option value="1200">1200</option>
+        <option value="2400">2400</option>
+        <option value="4800">4800</option>
+        <option value="9600">9600</option>
+        <option value="19200">19200</option>
+        <option value="38400">38400</option>
+        <option value="57600">57600</option>
+        <option value="74880">74880</option>
+        <option value="115200" selected>115200</option>
+        <option value="230400">230400</option>
+        <option value="250000">250000</option>
+        <option value="500000">500000</option>
+        <option value="1000000">1000000</option>
+      </select>
+      <span>bps(標準:115200bps)</span>
+    </div>
+    <div>
+      <label for="linebreak-select">改行コード:</label>
+      <select id="linebreak-select">
+        <option value="CRLF" selected>CRLF</option>
+        <option value="LF">LF</option>
+        <option value="CR">CR</option>
+      </select>
+      <span>(標準:CRLF)</span>
+    </div>
+
+    <button onclick="onStartButtonClick()" class="button">接続</button>
+    <div>
+      <label for="input-text">送信内容:</label>
+      <input type="text" id="input-text" placeholder="データを入力してください">
+      <button id="send-button" class="button">送信</button>
+    </div>
+    <br>
+    <details>
+      <summary>コマンド一覧</summary>
+      <p>AD7SGPRへは英数字・記号以外にも以下コマンドを送信できます。詳しくはこちら</p>
+
+      <div class="command-section">
+        <button id="quick-clr" class="button">@CLR</button>
+        <p>7セグディスプレイのクリア</p>
+      </div>
+
+      <div class="command-section">
+        <button id="quick-ani0" class="button">@ANI0</button>
+        <button id="quick-ani1" class="button">@ANI1</button>
+        <button id="quick-ani2" class="button">@ANI2</button>
+        <p>アニメーション設定。<b>@ANI0</b>なし <b>@ANI1</b>数字アニメ <b>@ANI2</b>セグアニメ</p>
+      </div>
+
+      <div class="command-section">
+        <button id="quick-7sg0" class="button">@7SG0</button>
+        <button id="quick-7sg1" class="button">@7SG1</button>
+        <p>ディスプレイの表示モード設定 <b>@7SG1</b>表示 <b>@7SG0</b>非表示</p>
+      </div>
+      <div class="command-section">
+        <button id="quick-bri0" class="button">@BRI0</button>
+        <button id="quick-bri1" class="button">@BRI1</button>
+        <button id="quick-bri2" class="button">@BRI2</button>
+        <button id="quick-bri3" class="button">@BRI3</button>
+        <button id="quick-bri4" class="button">@BRI4</button>
+        <button id="quick-bri5" class="button">@BRI5</button>
+        <button id="quick-bri6" class="button">@BRI6</button>
+        <button id="quick-bri7" class="button">@BRI7</button>
+        <p>ディスプレイの輝度を設定します。 暗い0 ↔ 7明るい</p>
+      </div>
+      <div class="command-section">
+        <button id="quick-brr" class="button">@BRR</button>
+        <p>現在のディスプレイの輝度を返します。</p>
+      </div>
+      <div class="command-section">
+        <button id="quick-hex" class="button">@HEX</button>
+        <button id="quick-hexffffffffffffffff" class="button">@HEXFFFFFFFFFFFFFFFF</button>
+        <button id="quick-hexff00000000000000" class="button">@HEXFF00000000000000</button>
+        <p>16進数のデータでセグメントを個別に制御します。<br>
+          例：<b>@HEXFFFFFFFFFFFFFFFF</b>を送信すると、「8.8.8.8.8.8.8.8.」を表示</p>
+      </div>
+    </details><br>
+    <h2>AD7SGPRからの受信データ:</h2>
+    <textarea id="output-text" readonly></textarea>
+    <button id="clear-output" class="button">受信データをクリア</button>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
 </html>

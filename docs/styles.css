@@ -60,3 +60,18 @@ label {
   padding-top: 7px;
   padding-bottom: 7px;
 }
+
+.command-section {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.command-section .button {
+  margin-bottom: 10px;
+}
+
+.command-section p {
+  padding: 10px;
+  background-color: #f9f9f9;
+}

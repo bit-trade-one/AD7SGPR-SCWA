@@ -51,7 +51,10 @@ async function onStartButtonClick() {
             console.log("Canceled");
             break;
           }
-          document.getElementById("output-text").value += value + '\n';
+          const outputText = document.getElementById("output-text");
+          outputText.value += value + '\n';
+          outputText.scrollTop = outputText.scrollHeight;
+          
         }
       } catch (error) {
         console.log("Error: Read");
@@ -78,6 +81,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const sendButton = document.getElementById("send-button");
   const inputText = document.getElementById("input-text");
   const quickClrButton = document.getElementById("quick-clr");
+  const quickAni0Button = document.getElementById("quick-ani0");
+  const quickAni1Button = document.getElementById("quick-ani1");
+  const quickAni2Button = document.getElementById("quick-ani2");
+  const quick7sg0Button = document.getElementById("quick-7sg0");
+  const quick7sg1Button = document.getElementById("quick-7sg1");
+  const quickBriButtons = Array.from({length: 8}, (_, i) => document.getElementById(`quick-bri${i}`));
+  const quickBrrButton = document.getElementById("quick-brr");
+  const quickHexButton = document.getElementById("quick-hex");
+  const quickHexFFFFFFFFFFFFFFFFButton = document.getElementById("quick-hexffffffffffffffff");
+  const quickHexFF00000000000000Button = document.getElementById("quick-hexff00000000000000");
+  const clearOutputButton = document.getElementById("clear-output");
 
   sendButton.addEventListener("click", () => {
     if (!port) {
@@ -103,5 +117,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
   quickClrButton.addEventListener("click", function () {
     inputText.value = "@CLR";
+  });
+
+  quickAni0Button.addEventListener("click", function () {
+    inputText.value = "@ANI0";
+  });
+
+  quickAni1Button.addEventListener("click", function () {
+    inputText.value = "@ANI1";
+  });
+
+  quickAni2Button.addEventListener("click", function () {
+    inputText.value = "@ANI2";
+  });
+
+  quick7sg0Button.addEventListener("click", function () {
+    inputText.value = "@7SG0";
+  });
+
+  quick7sg1Button.addEventListener("click", function () {
+    inputText.value = "@7SG1";
+  });
+
+  quickBriButtons.forEach((button, i) => {
+    button.addEventListener("click", function () {
+      inputText.value = `@BRI${i}`;
+    });
+  });
+
+  quickBrrButton.addEventListener("click", function () {
+    inputText.value = "@BRR";
+  });
+
+  quickHexButton.addEventListener("click", function () {
+    inputText.value = "@HEX";
+  });
+
+  quickHexFFFFFFFFFFFFFFFFButton.addEventListener("click", function () {
+    inputText.value = "@HEXFFFFFFFFFFFFFFFF";
+  });
+
+  quickHexFF00000000000000Button.addEventListener("click", function () {
+    inputText.value = "@HEXFF00000000000000";
+  });
+
+  clearOutputButton.addEventListener("click", function () { // 追加するコード
+    const outputText = document.getElementById("output-text");
+    outputText.value = "";
   });
 });
