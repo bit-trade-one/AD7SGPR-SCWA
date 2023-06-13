@@ -4,4 +4,4 @@
 
 ## [WEBアプリへ](https://bit-trade-one.github.io/AD7SGPR-SCWA/)
 
-### [親リポジトリ](http://bit-trade-one.co.jp/) 
+### [AD7SGPR本体リポジトリ](http://bit-trade-one.co.jp/) 
