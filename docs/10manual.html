@@ -21,14 +21,14 @@
     </header>
     <h1>使用方法</h1>
     <p>AD7SGPRは本体ボタン操作と、シリアル経由のコマンドによる<br>２つの7セグメントディスプレイ表示の設定方法があります。
-<!--    <p>AD7SGPRは文字列を送るだけで簡単に7セグを点灯できるデバイスです。<br>
+        <!--    <p>AD7SGPRは文字列を送るだけで簡単に7セグを点灯できるデバイスです。<br>
         単なる表示だけでなくアニメーションも交えて表示することなども出来ます。<br>
         ターミナルソフトはもちろん、WEBブラウザからの制御にも対応しており、<br>
         Youtubeチャンネル登録者数などの表示も可能です。</p> -->
 
     <h2>本体各部名称</h2>
     <img src="https://github.com/bit-trade-one/AD7SGPR-SCWA/assets/85532743/7dcc07a0-161a-4ecf-a437-aaa76694579c"
-        alt="本体各部名称" width="680px">
+        alt="本体各部名称" width="800px">
 
     <div class="manual-section">
         <h2>本体ボタン（A,B,C,Dの4つ）</h2>
@@ -96,11 +96,13 @@
                     例：@HEXFFFFFFFFFFFFFFFFを送信すると、「8.8.8.8.8.8.8.8.」
                     <br>@HEX0000000000000080を送信すると、「&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp.」<br>
                     @HEX00000000000000FFを送信すると、「&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp8.」<br>
-                    @HEXFF00000000000000を送信すると、「8.&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp」<br>以下表を参照
+                    @HEXFF00000000000000を送信すると、「8.&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp」<br>以下画像・表を参照
                 </td>
             </tr>
         </table>
-
+        <p>@HEXコマンドによるセグメントの制御について</P>
+        <img src="https://github.com/bit-trade-one/AD7SGPR-SCWA/assets/85532743/ef28a74a-37e0-4872-a17f-20ae382e3b21"
+            alt="セグメント割当" width="1024px">
         <table>
             <tr>
                 <th>@HEX用16進数</th>&nbsp
