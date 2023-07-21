@@ -86,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const quickAni2Button = document.getElementById("quick-ani2");
   const quick7sg0Button = document.getElementById("quick-7sg0");
   const quick7sg1Button = document.getElementById("quick-7sg1");
+  const quicksgrButton = document.getElementById("quick-sgr");
   const quickBriButtons = Array.from({length: 8}, (_, i) => document.getElementById(`quick-bri${i}`));
   const quickBrrButton = document.getElementById("quick-brr");
   const quickHexButton = document.getElementById("quick-hex");
@@ -137,6 +138,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   quick7sg1Button.addEventListener("click", function () {
     inputText.value = "@7SG1";
+  });
+
+  quicksgrButton.addEventListener("click", function () {
+    inputText.value = "@SGR";
   });
 
   quickBriButtons.forEach((button, i) => {
